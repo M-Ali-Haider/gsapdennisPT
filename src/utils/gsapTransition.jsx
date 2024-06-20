@@ -43,35 +43,33 @@ export const animatePageIn = (width, height) => {
         },
         duration: 0.75,
         ease: customEase,
+        onComplete: () => {
+          tl.set(bannerThree, {
+            attr: {
+              d: `M0 300 Q${width / 2} 0 ${width} 300 L${width} ${height} Q${
+                width / 2
+              } ${height} 0 ${height} L0 0`,
+            },
+          });
+          tl.set([bannerOne, bannerTwo], {
+            top: "100vh",
+          });
+        },
       });
   }
 };
 
 export const animatePageOut = (href, router, width, height) => {
   const bannerTwo = document.getElementById("banner-2");
-
-  //this is the svg id
   const bannerOne = document.getElementById("banner-1");
-
-  //this is the id of the path inside svg
   const bannerThree = document.getElementById("banner-3");
 
   if (bannerOne && bannerTwo && bannerThree) {
     const tl = gsap.timeline();
-    tl.set([bannerOne, bannerTwo], {
-      top: "100vh",
+    tl.set(bannerTwo, {
+      opacity: 0,
+      top: "40%",
     })
-      .set(bannerTwo, {
-        opacity: 0,
-        top: "40%",
-      })
-      .set(bannerThree, {
-        attr: {
-          d: `M0 300 Q${width / 2} 0 ${width} 300 L${width} ${height} Q${
-            width / 2
-          } ${height} 0 ${height} L0 0`,
-        },
-      })
       .to(bannerOne, {
         top: "-300px",
         duration: 0.75,
