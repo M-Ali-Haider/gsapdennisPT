@@ -76,9 +76,6 @@ export const animatePageOut = (href, router, width, height) => {
         top: "-300px",
         duration: 0.75,
         ease: customEase,
-        onComplete: () => {
-          router.push(href);
-        },
       })
       .to(bannerTwo, {
         opacity: 1,
@@ -96,6 +93,9 @@ export const animatePageOut = (href, router, width, height) => {
         },
         duration: 0.75,
         ease: customEase,
+        onComplete: () => {
+          router.push(href);
+        },
       });
   }
 };

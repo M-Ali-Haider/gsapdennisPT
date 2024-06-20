@@ -1,17 +1,8 @@
 "use client";
 import { animations } from "@/Data/animations";
-import { animatePageOut, animatePageOut2 } from "@/utils/gsapTransition";
+import { animatePageOut } from "@/utils/gsapTransition";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 export default function Navbar() {
-  const [width, setWidth] = useState(0);
-  const [height, setHeight] = useState(0);
-
-  useEffect(() => {
-    setWidth(window.innerWidth);
-    setHeight(window.innerHeight);
-  }, []);
-
   const pathName = usePathname();
   const router = useRouter();
 
@@ -19,7 +10,7 @@ export default function Navbar() {
     const textTransition = document.getElementById("banner-2");
     textTransition.innerText = name;
     if (pathName != href) {
-      animatePageOut(href, router, width, height);
+      animatePageOut(href, router, window.innerWidth, window.innerHeight);
     }
   };
   return (
